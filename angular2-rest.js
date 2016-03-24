@@ -246,7 +246,7 @@ function methodBuilder(method) {
                 // intercept the request
                 this.requestInterceptor(req);
                 // make the request and store the observable for later transformation
-                var observable = this.http.request(req).publishReplay().refCount();
+                var observable = this.http.request(req).share();
                 // transform the obserable in accordance to the @Produces decorator
                 if (descriptor.isJSON) {
                     observable = observable.map(function (res) { return res.json(); });
