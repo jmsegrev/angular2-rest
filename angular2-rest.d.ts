@@ -23,9 +23,10 @@ export declare class RESTClient {
     *
     * @method responseInterceptor
     * @param {Response} res - response object
+     * {useActionIndicator} - custom usage
     * @returns {Response} res - transformed response object
     */
-    protected responseInterceptor(res: Observable<Response>): Observable<Response>;
+    protected responseInterceptor(res: Observable<Response>, useActionIndicator: boolean): Observable<Response>;
 }
 /**
  * Set the base URL of REST resource
@@ -57,6 +58,11 @@ export declare var Body: (target: RESTClient, propertyKey: string | symbol, para
  * @param {string} key - header key to bind value
  */
 export declare var Header: (key: string) => (target: RESTClient, propertyKey: string | symbol, parameterIndex: number) => void;
+/**
+ * boolean var for responseInterceptor, type: boolean
+ * Only one indicator per method!
+ */
+export declare var Indicator: (target: RESTClient, propertyKey: string | symbol, parameterIndex: number) => void;
 /**
  * Set custom headers for a REST method
  * @param {Object} headersDef - custom headers in a key-value pair

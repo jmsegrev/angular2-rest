@@ -25,6 +25,7 @@ Table of Contents:
     @Query(string)
     @Header(string)
     @Body
+    @Indicator
 */
 
 import {Inject} from "angular2/core";
@@ -65,14 +66,16 @@ export class RESTClient {
       //
     }
 
+
     /**
     * Response Interceptor
     *
     * @method responseInterceptor
     * @param {Response} res - response object
+     * {useActionIndicator} - custom usage
     * @returns {Response} res - transformed response object
     */
-    protected responseInterceptor(res: Observable<Response>): Observable<Response> {
+    protected responseInterceptor(res: Observable<Response>, useActionIndicator: boolean): Observable<Response> {
         return res;
     }
 
@@ -142,6 +145,11 @@ export var Body = paramBuilder("Body")("Body");
  */
 export var Header = paramBuilder("Header");
 
+/**
+ * boolean var for responseInterceptor, type: boolean
+ * Only one indicator per method!
+ */
+export var Indicator = paramBuilder("Indicator")("Indicator");
 
 /**
  * Set custom headers for a REST method
@@ -183,7 +191,7 @@ function methodBuilder(method: number) {
             var pQuery = target[`${propertyKey}_Query_parameters`];
             var pBody = target[`${propertyKey}_Body_parameters`];
             var pHeader = target[`${propertyKey}_Header_parameters`];
-
+            var pIndicator = target[(propertyKey + "_Indicator_parameters")];
             descriptor.value = function(...args: any[]) {
 
                 // Body
@@ -236,6 +244,11 @@ function methodBuilder(method: number) {
                     }
                 }
 
+                var useActionIndicator = false;
+                if (pIndicator) {
+                    useActionIndicator = args[pIndicator[0].parameterIndex];
+                }
+
                 // Request options
                 var options = new RequestOptions({
                     method,
@@ -258,7 +271,7 @@ function methodBuilder(method: number) {
                 }
 
                 // intercept the response
-                observable = this.responseInterceptor(observable);
+                observable = this.responseInterceptor(observable, useActionIndicator);
 
                 return observable;
             };

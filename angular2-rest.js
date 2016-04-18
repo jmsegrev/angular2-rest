@@ -72,9 +72,10 @@ var RESTClient = (function () {
     *
     * @method responseInterceptor
     * @param {Response} res - response object
+     * {useActionIndicator} - custom usage
     * @returns {Response} res - transformed response object
     */
-    RESTClient.prototype.responseInterceptor = function (res) {
+    RESTClient.prototype.responseInterceptor = function (res, useActionIndicator) {
         return res;
     };
     RESTClient = __decorate([
@@ -148,6 +149,11 @@ exports.Body = paramBuilder("Body")("Body");
  */
 exports.Header = paramBuilder("Header");
 /**
+ * boolean var for responseInterceptor, type: boolean
+ * Only one indicator per method!
+ */
+exports.Indicator = paramBuilder("Indicator")("Indicator");
+/**
  * Set custom headers for a REST method
  * @param {Object} headersDef - custom headers in a key-value pair
  */
@@ -183,6 +189,7 @@ function methodBuilder(method) {
             var pQuery = target[(propertyKey + "_Query_parameters")];
             var pBody = target[(propertyKey + "_Body_parameters")];
             var pHeader = target[(propertyKey + "_Header_parameters")];
+            var pIndicator = target[(propertyKey + "_Indicator_parameters")];
             descriptor.value = function () {
                 var args = [];
                 for (var _i = 0; _i < arguments.length; _i++) {
@@ -234,6 +241,10 @@ function methodBuilder(method) {
                         }
                     }
                 }
+                var useActionIndicator = false;
+                if (pIndicator) {
+                    useActionIndicator = args[pIndicator[0].parameterIndex];
+                }
                 // Request options
                 var options = new http_1.RequestOptions({
                     method: method,
@@ -252,7 +263,7 @@ function methodBuilder(method) {
                     observable = observable.map(function (res) { return res.json(); });
                 }
                 // intercept the response
-                observable = this.responseInterceptor(observable);
+                observable = this.responseInterceptor(observable, useActionIndicator);
                 return observable;
             };
             return descriptor;
