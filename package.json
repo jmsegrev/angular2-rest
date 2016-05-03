@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Angular2 HTTP client to consume RESTful services.",
   "typings": "./angular2-rest.d.ts",
-  "main": "angular2-rest.js",
+  "main": "angular2-rest.ts",
   "scripts": {
     "test": "node_modules/.bin/gulp test",
     "gulp": "node_modules/.bin/gulp"
@@ -43,13 +43,13 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-jasmine": "^2.2.1",
+    "gulp-jasmine": "^2.3.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-tsc": "^1.1.4",
+    "gulp-tsc": "^1.1.5",
     "gulp-typedoc": "^1.2.1",
-    "gulp-typescript": "^2.10.0",
-    "gulp-uglify": "^1.5.1",
+    "gulp-typescript": "^2.13.0",
+    "gulp-uglify": "^1.5.3",
     "object-merge": "^2.5.1"
   }
 }

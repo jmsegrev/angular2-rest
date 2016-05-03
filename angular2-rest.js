@@ -25,6 +25,7 @@ Table of Contents:
     @Query(string)
     @Header(string)
     @Body
+    @Indicator
 */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -38,8 +39,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require("angular2/core");
-var http_1 = require("angular2/http");
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
 /**
 * Angular 2 RESTClient class.
 *
