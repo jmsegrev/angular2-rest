@@ -35,6 +35,8 @@ Request, RequestOptions, RequestMethod as RequestMethods,
 Response,
 URLSearchParams
 } from "@angular/http";
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 import {Observable} from "rxjs/Observable";
 
 /**
