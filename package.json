@@ -26,8 +26,8 @@
   },
   "homepage": "https://github.com/Paldom/angular2-rest#readme",
   "dependencies": {
-    "@angular/core": "2.0.0",
-    "@angular/http": "2.0.0",
+    "@angular/core": "^2.0.0",
+    "@angular/http": "^2.0.0",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.13",
     "reflect-metadata": "^0.1.2",
