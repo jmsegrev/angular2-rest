@@ -5,11 +5,14 @@
         "noImplicitAny": false,
         "outDir": ".",
         "rootDir": ".",
-        "declaration": true,
+        "declaration": false,
         "removeComments": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "types": [
+          "core-js"
+         ]
     },
     "exclude": [
         "node_modules"
